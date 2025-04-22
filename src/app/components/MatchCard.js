@@ -2,12 +2,12 @@ import Link from 'next/link';
 import { format, parseISO } from 'date-fns';
 
 export default function MatchCard({ match, isLive }) {
-  // Format match time if available
+
   const matchTime = match.utcDate 
     ? format(parseISO(match.utcDate), 'h:mm a') 
     : 'TBD';
 
-  // Determine what to show in the time slot
+
   const renderTimeInfo = () => {
     if (isLive) {
       return (

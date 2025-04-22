@@ -22,7 +22,7 @@ export default function MatchDetail() {
         }
         setMatch(matchRes.data);
 
-        // Try to fetch lineups (optional)
+        // Try to fetch lineups 
         try {
           const lineupsRes = await axios.get(`/api/football?endpoint=matches/${id}/lineups`);
           if (lineupsRes.data) {

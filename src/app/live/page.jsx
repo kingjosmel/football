@@ -28,11 +28,11 @@ export default function LiveMatchesPage() {
           if (a.status === 'IN_PLAY' && b.status !== 'IN_PLAY') return -1;
           if (b.status === 'IN_PLAY' && a.status !== 'IN_PLAY') return 1;
           
-          // Then sort by competition importance (you can customize this)
+          
           const compPriority = {
             'PREMIER_LEAGUE': 1,
             'CHAMPIONS_LEAGUE': 2,
-            // Add other competitions as needed
+           
           };
           
           return (
@@ -50,12 +50,13 @@ export default function LiveMatchesPage() {
       }
     };
 
+// Refresh every minute
     fetchLiveMatches();
-    const interval = setInterval(fetchLiveMatches, 60000); // Refresh every minute
+    const interval = setInterval(fetchLiveMatches, 60000); 
     return () => clearInterval(interval);
   }, []);
 
-  // Separate live and non-live matches for better rendering
+  
   const liveMatches = matches.filter(m => m.status === 'IN_PLAY');
   const otherMatches = matches.filter(m => m.status !== 'IN_PLAY');
 
@@ -90,7 +91,7 @@ export default function LiveMatchesPage() {
             </div>
           )}
 
-          {/* Other Matches Section */}
+        
           {otherMatches.length > 0 && (
             <div>
               <h2 className="text-xl font-semibold mb-4">Other Matches</h2>
