@@ -63,13 +63,6 @@ export default function Hero() {
                 src="/images/futuristic-football-game-player.jpg"
               /> 
             </div>
-            <div className="w-full flex gap-3 justify-center my-2 max-sm:hidden">
-              <img 
-                className="object-cover object-center rounded-xl w-[208] h-[145]" 
-                alt="hero" 
-                src="/images/futuristic-football-game-player.jpg"
-              />
-            </div>
           </div>
         </div>
       </section>
