@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import Hero from './components/Hero'
 import Gallery from './components/Gallery'
 
