@@ -48,7 +48,7 @@ export default function MatchCard({ match, isLive }) {
         <div className="flex items-center justify-between py-4">
           {/* Home Team */}
           <div className="w-2/5 text-center">
-            <p className="font-bold truncate">
+            <p className="font-bold truncate text-gray-900">
               {match.homeTeam?.name || "TBD"}
             </p>
             {match.homeTeam?.crest && (
@@ -75,7 +75,7 @@ export default function MatchCard({ match, isLive }) {
 
           {/* Away Team */}
           <div className="w-2/5 text-center">
-            <p className="font-bold truncate">
+            <p className="font-bold truncate text-gray-900">
               {match.awayTeam?.name || "TBD"}
             </p>
             {match.awayTeam?.crest && (
@@ -95,7 +95,7 @@ export default function MatchCard({ match, isLive }) {
           className={`block w-full text-center py-2 px-4 rounded transition-colors ${
             isLive
               ? "bg-red-50 text-red-600 hover:bg-red-100"
-              : "bg-blue-50 text-blue-600 hover:bg-blue-100"
+              : "bg-blue-50 text-gray-900 hover:bg-blue-100"
           }`}
         >
           View Details
