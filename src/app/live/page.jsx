@@ -1,7 +1,7 @@
-'use client';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import MatchCard from '../components/MatchCard';
+"use client";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import MatchCard from "../components/MatchCard";
 
 export default function LiveMatchesPage() {
   const [matches, setMatches] = useState([]);
@@ -11,32 +11,30 @@ export default function LiveMatchesPage() {
   useEffect(() => {
     const fetchLiveMatches = async () => {
       try {
-        const response = await axios.get('/api/football', {
+        const response = await axios.get("/api/football", {
           params: {
-            endpoint: 'matches',
-            status: 'LIVE'
-          }
+            endpoint: "matches",
+            status: "LIVE",
+          },
         });
 
         // Sort matches - LIVE matches first, then by competition importance
         const sortedMatches = (response.data.matches || []).sort((a, b) => {
           // Push finished matches to bottom
-          if (a.status === 'FINISHED') return 1;
-          if (b.status === 'FINISHED') return -1;
-          
+          if (a.status === "FINISHED") return 1;
+          if (b.status === "FINISHED") return -1;
+
           // Sort IN_PLAY (live) matches to top
-          if (a.status === 'IN_PLAY' && b.status !== 'IN_PLAY') return -1;
-          if (b.status === 'IN_PLAY' && a.status !== 'IN_PLAY') return 1;
-          
-          
+          if (a.status === "IN_PLAY" && b.status !== "IN_PLAY") return -1;
+          if (b.status === "IN_PLAY" && a.status !== "IN_PLAY") return 1;
+
           const compPriority = {
-            'PREMIER_LEAGUE': 1,
-            'CHAMPIONS_LEAGUE': 2,
-           
+            PREMIER_LEAGUE: 1,
+            CHAMPIONS_LEAGUE: 2,
           };
-          
+
           return (
-            (compPriority[b.competition?.code] || 99) - 
+            (compPriority[b.competition?.code] || 99) -
             (compPriority[a.competition?.code] || 99)
           );
         });
@@ -44,21 +42,20 @@ export default function LiveMatchesPage() {
         setMatches(sortedMatches);
         setError(null);
       } catch (err) {
-        setError(err.response?.data?.error || 'Failed to load matches');
+        setError(err.response?.data?.error || "Failed to load matches");
       } finally {
         setLoading(false);
       }
     };
 
-// Refresh every minute
+    // Refresh every minute
     fetchLiveMatches();
-    const interval = setInterval(fetchLiveMatches, 60000); 
+    const interval = setInterval(fetchLiveMatches, 60000);
     return () => clearInterval(interval);
   }, []);
 
-  
-  const liveMatches = matches.filter(m => m.status === 'IN_PLAY');
-  const otherMatches = matches.filter(m => m.status !== 'IN_PLAY');
+  const liveMatches = matches.filter((m) => m.status === "IN_PLAY");
+  const otherMatches = matches.filter((m) => m.status !== "IN_PLAY");
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -84,19 +81,18 @@ export default function LiveMatchesPage() {
                 Currently Playing
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {liveMatches.map(match => (
+                {liveMatches.map((match) => (
                   <MatchCard key={match.id} match={match} isLive={true} />
                 ))}
               </div>
             </div>
           )}
 
-        
           {otherMatches.length > 0 && (
             <div>
               <h2 className="text-xl font-semibold mb-4">Other Matches</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {otherMatches.map(match => (
+                {otherMatches.map((match) => (
                   <MatchCard key={match.id} match={match} isLive={false} />
                 ))}
               </div>
@@ -105,7 +101,7 @@ export default function LiveMatchesPage() {
 
           {matches.length === 0 && (
             <div className="text-center py-12">
-              <h2 className="text-2xl font-semibold text-gray-700 mb-4">
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
                 No matches currently available
               </h2>
             </div>
