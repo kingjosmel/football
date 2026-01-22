@@ -11,7 +11,7 @@ export default function LandingPage() {
           backgroundImage: "url('/images/futuristic-football-game-player.jpg')",
         }}
       >
-        <div className="hero-overlay bg-opacity-60 bg-gradient-to-br from-black/70 to-blue-900/50"></div>
+        <div className="hero-overlay text-black bg-opacity-60 bg-gradient-to-br from-black/70 to-blue-900/50"></div>
         <div className="text-center hero-content text-neutral-content">
           <div className="max-w-4xl">
             {/* Live Badge */}
